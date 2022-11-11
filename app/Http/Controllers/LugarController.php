@@ -66,8 +66,10 @@ class LugarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
+       
         return view('lugar.create');
     }
 
@@ -79,19 +81,28 @@ class LugarController extends Controller
      */
     public function store(Request $request)
     {
-        Http::post('http://popayanturimsapi.test/v1/lugar',$request->all());
-        return redirect()->route('lugars.index');
 
-        // $file=$request->file("foto_url");
-        // $nombreArchivo = "img_".time().".".$file->guessExtension();
-        // $request->file('foto_url')->storeAs('public/Fotos', $nombreArchivo );
-        // $lugar['foto_url']= "$nombreArchivo";
-        // // return redirect()->route('lugars.index');
+
+         $lugar = Http::post('http://popayanturimsapi.test/v1/lugar',$request->all());
+         return $lugar;
+// request()->validate(Lugar::$rules);
+// $lugar = $request->all();
+
+
+// $file=$request->file("foto_url");
+// $nombreArchivo = "img_".time().".".$file->guessExtension();
+// $request->file('foto_url')->storeAs('public/Fotos', $nombreArchivo );
+// $lugar['foto_url']= "$nombreArchivo";
+// Lugar::create($lugar);
+
+//    return redirect()->route('lugars.index')
+//         ->with('success', 'Lugar created successfully.');
+
+
 
 
 
     }
-
 
     /**
      * Display the specified resource.
@@ -118,13 +129,13 @@ class LugarController extends Controller
 
 
         $lugar = Lugar::find($id);
-        $tipolugar = Tipolugar::pluck('nombre', 'id'); #consulta para retornar
+        $tipolugar = Tipolugar::pluck('nombre','id');#consulta para retornar
         $ruta = Ruta::pluck('ubicasion');
         $gastronomia = Gastronomia::pluck('ubicasion');
         $evento = Evento::pluck('nombre');
         $calificasiones = Calificasione::pluck('comentarios');
-        $servicio = Servicio::pluck('nombre');
-        return view('lugar.edit', compact('lugar', 'tipolugar', 'ruta', 'gastronomia', 'evento', 'calificasiones', 'servicio'));
+        $servicio = Servicio ::pluck('nombre');
+  return view('lugar.edit', compact('lugar','tipolugar','ruta','gastronomia','evento','calificasiones','servicio'));
     }
 
     /**
@@ -136,18 +147,21 @@ class LugarController extends Controller
      */
     public function update(Request $request, Lugar $lugar)
     {
-        http::put('http://popayanturimsapi.test/v1/lugar' . $lugar, $request->all());
+        http::put('http://popayanturimsapi.test/v1/lugar'.$lugar,$request->all());
         // request()->validate(Lugar::$rules);
         $lugar->update($request->all());
 
-        $file = $request->file("foto_url");
-        $nombreArchivo = "img_" . time() . "." . $file->guessExtension();
-        $request->file('foto_url')->storeAs('public/Fotos', $nombreArchivo);
-        $lugar['foto_url'] = "$nombreArchivo";
-        $lugar->save();
+        $file=$request->file("foto_url");
+$nombreArchivo = "img_".time().".".$file->guessExtension();
+$request->file('foto_url')->storeAs('public/Fotos', $nombreArchivo );
+$lugar['foto_url']= "$nombreArchivo";
+$lugar->save();
 
         return redirect()->route('lugars.index')
-            ->with('success', 'Lugar update successfully');
+        ->with('success', 'Lugar update successfully');
+
+
+
     }
 
 
@@ -162,19 +176,28 @@ class LugarController extends Controller
     public function destroy($id)
     {
 
-        Http::delete('http://popayanturimsapi.test/v1/lugar/' . $id);
+        Http::delete('http://popayanturimsapi.test/v1/lugar/'.$id);
+
         return redirect()->route('lugars.index');
+
     }
 
 
-    public function pdf()
-    {
+    public function pdf(){
         $lugars = Lugar::paginate();
 
 
-        $pdf = PDF::loadView('lugar.pdf', ['lugars' => $lugars]);
+        $pdf = PDF::loadView('lugar.pdf',['lugars'=>$lugars]);
         return $pdf->stream();
-    }
+
 
     }
 
+    public function form(){
+        $lugars = Lugar::paginate();
+        $lugar= Lugar::all();
+        return view('lugar.formulario',compact('lugars'));
+
+
+    }
+}

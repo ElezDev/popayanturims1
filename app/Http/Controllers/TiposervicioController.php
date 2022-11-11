@@ -54,9 +54,9 @@ class TiposervicioController extends Controller
      */
     public function show($id)
     {
-        $tiposervicio = Tiposervicio::find($id);
-
-        return view('tiposervicio.show', compact('tiposervicio'));
+        $tiposervicio = Http::get('http://popayanturimsapi.test/v1/tiposervicio'.$id);
+        $TipoSerArray = $tiposervicio->json();
+        return view('tiposervicio.show',compact('TipoSerArray'));
     }
 
     /**
@@ -67,9 +67,9 @@ class TiposervicioController extends Controller
      */
     public function edit($id)
     {
-        $tiposervicio = Tiposervicio::find($id);
-
-        return view('tiposervicio.edit', compact('tiposervicio'));
+        $tiposer = Http::get('http://popayanturimsapi.test/v1/tiposervicio/'.$id);
+        $tipoS = $tiposer->json();
+        return view('tiposervicio.edit', compact('tipoS'));
     }
 
     /**
@@ -79,14 +79,10 @@ class TiposervicioController extends Controller
      * @param  Tiposervicio $tiposervicio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tiposervicio $tiposervicio)
+    public function update(Request $request, $id)
     {
-        request()->validate(Tiposervicio::$rules);
-
-        $tiposervicio->update($request->all());
-
-        return redirect()->route('tiposervicios.index')
-            ->with('success', 'Tiposervicio updated successfully');
+        Http::put('http://popayanturimsapi.test/v1/tiposervicio'.$id,$request->all());
+        return $request;
     }
 
     /**

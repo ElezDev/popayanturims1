@@ -16,26 +16,26 @@
                         <span class="card-title ">crear lugar</span>
                     </div>
                     <div class="card-body ">
-
-                        <form method="POST" action="{{ route('lugars.store') }}"  role="form" enctype="multipart/form-data">
+                    
+                        <form method="POST" action="{{('http://popayanturimsapi.test/v1/lugar')}}"  role="form" enctype="multipart/form-data">
                             @csrf
                             @include('lugar.form')
                             <div class="grid grid-cols-1 mt-5 mx-7">
-                                <img id="imagenSeleccionada"  height="80">
+                                <img id="imagenSeleccionada"  height="80">           
                             </div>
-                            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+                            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
                         </form>
-                         <script>
-                            $(document).ready(function (e) {
-                                $('#foto_url').change(function(){
+                        <script>   
+                            $(document).ready(function (e) {   
+                                $('#foto_url').change(function(){            
                                     let reader = new FileReader();
-                                    reader.onload = (e) => {
-                                        $('#imagenSeleccionada').attr('src', e.target.result);
+                                    reader.onload = (e) => { 
+                                        $('#imagenSeleccionada').attr('src', e.target.result); 
                                     }
-                                    reader.readAsDataURL(this.files[0]);
+                                    reader.readAsDataURL(this.files[0]); 
                                 });
                             });
-
+                            </script>
                     </div>
                 </div>
             </div>

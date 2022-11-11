@@ -85,12 +85,8 @@ class TipolugarController extends Controller
      */
     public function update(Request $request, Tipolugar $tipolugar)
     {
-        request()->validate(Tipolugar::$rules);
-
-        $tipolugar->update($request->all());
-
-        return redirect()->route('tipolugars.index')
-            ->with('success', 'Tipolugar updated successfully');
+        Http::post('http://popayanturimsapi.test/v1/tipolugar'.$tipolugar,$request->all());
+        return redirect()->route('tipolugars.index');
     }
 
     /**

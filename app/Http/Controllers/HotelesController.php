@@ -16,7 +16,6 @@ class HotelesController extends Controller
     {
 
 
-
         $lugars = Http::get('http://popayanturimsapi.test/v1/lugar');
         $lugarArray = $lugars->json();
         return view('hoteles',compact('lugarArray'));

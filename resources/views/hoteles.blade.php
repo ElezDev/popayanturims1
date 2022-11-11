@@ -215,12 +215,9 @@ FIN DE TEXTO  --}}
                                                        width: 500px;">
 
                                                                 <img class="position-absolute w-100 h-100"
-<<<<<<< HEAD
-                                                               
+                                            
                                                                     src="{{  'http://localhost/Popayanturimsapi/storage/app/public/Fotos/'. $lugars['foto_url'] }}"
-=======
-                                                                    src="{{ 'http://localhost/Popayanturimsapi/storage/app/public/Fotos/'. $lugars['foto_url'] }}"
->>>>>>> 5fe6ca5753e0c11c9abd26e2410d89f97b9e218f
+                                                        
                                                                     style="object-fit: cover;">
                                                                 <div
                                                                     class="carousel-caption d-flex flex-column align-items-center justify-content-center">
