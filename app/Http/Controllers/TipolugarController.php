@@ -46,7 +46,6 @@ class TipolugarController extends Controller
     public function store(Request $request)
     {
         Http::post('http://popayanturimsapi.test/v1/tipolugar',$request->all());
-
         return redirect()->route('tipolugars.index');
     }
 
@@ -58,9 +57,9 @@ class TipolugarController extends Controller
      */
     public function show($id)
     {
-        $tipolugar = Tipolugar::find($id);
-
-        return view('tipolugar.show', compact('tipolugar'));
+        $tipolugar = Http::get('http://popayanturimsapi.test/v1/tipolugar/'.$id);
+        $TlugarArray = $tipolugar->json();
+        return view('tipolugar.show', compact('TlugarArray'));
     }
 
     /**
@@ -71,9 +70,9 @@ class TipolugarController extends Controller
      */
     public function edit($id)
     {
-        $tipolugar = Tipolugar::find($id);
-
-        return view('tipolugar.edit', compact('tipolugar'));
+        $Tlugars= http::get('http://popayanturimsapi.test/v1/tipolugar/'.$id);
+        $TlugarsArray=$Tlugars->json();
+        return view('tipolugar.edit', compact('TlugarsArray'));
     }
 
     /**
@@ -83,9 +82,9 @@ class TipolugarController extends Controller
      * @param  Tipolugar $tipolugar
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tipolugar $tipolugar)
+    public function update(Request $request, $id)
     {
-        Http::post('http://popayanturimsapi.test/v1/tipolugar'.$tipolugar,$request->all());
+        Http::post('http://popayanturimsapi.test/v1/tipolugar/'.$id,$request->all());
         return redirect()->route('tipolugars.index');
     }
 

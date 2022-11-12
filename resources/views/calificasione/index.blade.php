@@ -40,8 +40,7 @@
     @foreach ($CalificasionesArray as $calificasione)
         <tr>
 
-            <td></td>
-
+            <td>{{ $calificasione['id'] }}</td>
 			<td>{{ $calificasione['comentarios'] }}</td>
 			<td>{{ $calificasione['reseñas'] }}</td>
 

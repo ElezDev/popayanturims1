@@ -26,6 +26,7 @@ protected $guarded=[];
 		
 		'Contenido' => 'required',
 		'users_id' => 'required',
+    'img_post' => 'required',
     ];
 
     protected $perPage = 20;
@@ -35,7 +36,7 @@ protected $guarded=[];
      *
      * @var array
      */
-    protected $fillable = ['Contenido','users_id'];
+    protected $fillable = ['Contenido','users_id','img_post'];
 
 
     /**
@@ -46,10 +47,6 @@ protected $guarded=[];
         return $this->belongsTo('App\Models\User', 'id', 'users_id');
     }
     
-public function images(){
 
-  return $this->morphMany('App\Models\Image','imageable');
-
-}
 
 }

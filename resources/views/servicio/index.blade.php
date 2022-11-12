@@ -1,4 +1,3 @@
-
 @extends('adminlte::page')
 
 @section('title', 'Servicios')
@@ -36,8 +35,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ( $ServicioArray as $servicio)
-                <tr>
+        @foreach($ServicioArray as $servicio )
                     <td>{{ $servicio['id'] }}</td>
                     <td>{{ $servicio['nombre']}}</td>
                     <td>{{ $servicio['descripcion'] }}</td>
@@ -56,7 +54,7 @@
                     </td>
                 </tr>
             @endforeach
-</tbody>
+</tbody> 
 
 </table>
 </div>

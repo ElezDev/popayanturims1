@@ -1,5 +1,6 @@
 @extends('adminlte::page')
-    {{ $tiposervicio->name ?? 'Show Tiposervicio' }}
+@section('template_title')
+    {{ 'Show tipos de servicio' }}
 @endsection
 
 @section('content')
@@ -7,9 +8,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header bg bg-success" >
                         <div class="float-left">
-                            <span class="card-title">Show Tiposervicio</span>
+                            <span class="card-title">Tipos de servicio</span>
                         </div>
                         <div class="float-right">
                             <a class="btn btn-primary" href="{{ route('tiposervicios.index') }}"> Back</a>
@@ -20,7 +21,7 @@
 
                         <div class="form-group">
                             <strong>Nombre:</strong>
-                            {{ $tiposervicio->nombre }}
+                            {{ $TipoSerArray['nombre'] }}
                         </div>
 
                     </div>

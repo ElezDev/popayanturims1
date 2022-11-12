@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('template_title')
-    {{ $lugar->name ?? 'Show Lugar' }}
+    {{ $lugarArray['nombre']  ?? 'Show Lugar' }}
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
+                 <div class="card-header bg bg-success" >
                         <div class="float-left">
                             <span class="card-title">Show Lugar</span>
                         </div>
@@ -22,49 +22,49 @@
 
                         <div class="form-group">
                             <strong>Nombre:</strong>
-                            {{ $lugars['nombre'] }}
+                            {{ $lugarArray['nombre'] }}
                         </div>
-                        {{-- <div class="form-group">
+                        <div class="form-group">
                             <strong>Direccion:</strong>
-                            {{ $lugar->direccion }}
+                            {{ $lugarArray['direccion']  }}
                         </div>
                         <div class="form-group">
                             <strong>Horarios:</strong>
-                            {{ $lugar->horarios }}
+                            {{ $lugarArray['horarios']  }}
                         </div>
                         <div class="form-group">
                             <strong>Descripcion:</strong>
-                            {{ $lugar->descripcion }}
+                            {{ $lugarArray['descripcion'] }}
                         </div>
                         <div class="form-group">
-                            <strong>Foto Url:</strong>
-                             <td>  <img  src="{{ 'http://localhost/popayanturims/public/storage/Fotos/'.$lugar->foto_url }} " width="5%" style="border-radius:28px"/></td>
+                            <strong>Foto:</strong>
+                             <td>  <img  src="{{  'http://localhost/Popayanturimsapi/storage/app/public/Fotos/'.$lugarArray['foto_url'] }} "  " width="5%" style="border-radius:28px"/></td>
                             <td >
                         </div>
                         <div class="form-group">
                             <strong>Tipolugar Id:</strong>
-                            {{ $lugar->tipolugar_id }}
+                            {{ $lugarArray['tipolugar_id'] }}
                         </div>
                         <div class="form-group">
                             <strong>Rutas Id:</strong>
-                            {{ $lugar->rutas_id }}
+                            {{ $lugarArray['ruta_id'] }}
                         </div>
                         <div class="form-group">
                             <strong>Gastronomia Id:</strong>
-                            {{ $lugar->gastronomia_id }}
+                            {{ $lugarArray['gastronomia_id']}}
                         </div>
                         <div class="form-group">
                             <strong>Evento Id:</strong>
-                            {{ $lugar->evento_id }}
+                            {{ $lugarArray['evento_id']}}
                         </div>
                         <div class="form-group">
                             <strong>Calificasiones Id:</strong>
-                            {{ $lugar->calificasiones_id }}
+                            {{ $lugarArray['calificasione_id'] }}
                         </div>
                         <div class="form-group">
                             <strong>Servicios Id:</strong>
-                            {{ $lugar->servicios_id }}
-                        </div> --}}
+                            {{ $lugarArray['servicio_id']}}
+                        </div>
 
                     </div>
                 </div>

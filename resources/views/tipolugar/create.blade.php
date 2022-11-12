@@ -19,7 +19,7 @@
                         <form method="POST" action="{{ route('tipolugars.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
-                            @include('tipolugar.form')
+                              @include('tipolugar.form')
 
                         </form>
                     </div>

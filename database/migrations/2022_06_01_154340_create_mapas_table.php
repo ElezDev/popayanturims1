@@ -15,9 +15,9 @@ class CreateMapasTable extends Migration
     {
         Schema::create('mapas', function (Blueprint $table) {
             $table->id();
-            $table->string('gps');
-            $table->string('ubicacion');
-            $table->string('multimedia');
+            $table->string('nombre')->nullable();
+            $table->string('longitud');
+            $table->string('latitud');
             $table->timestamps();
         });
     }

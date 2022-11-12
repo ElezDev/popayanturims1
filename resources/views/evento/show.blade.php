@@ -22,27 +22,28 @@
                         
                         <div class="form-group">
                             <strong>Nombre:</strong>
-                            {{ $evento->nombre }}
+                            {{  $EvenArray['nombre'] }}
                         </div>
                         <div class="form-group">
-                            <strong>Ubucasion:</strong>
-                            {{ $evento->ubucasion }}
+                            <strong>Ubucacion:</strong>
+                            {{  $EvenArray['ubicacion'] }}
                         </div>
                         <div class="form-group">
                             <strong>Horarios:</strong>
-                            {{ $evento->horarios }}
+                            {{  $EvenArray['horarios']}}
                         </div>
                         <div class="form-group">
                             <strong>Fecha De Inicio:</strong>
-                            {{ $evento->fechainicio }}
+                            {{  $EvenArray['fechainicio'] }}
                         </div>
                         <div class="form-group">
                             <strong>Fecha Fin:</strong>
-                            {{ $evento->fechafin }}
-                        </div>
+                            {{  $EvenArray['fechafin'] }}
+                       </div>
+
                         <div class="form-group">
-                            <strong>Tipoeventos Id:</strong>
-                            {{ $evento->tipoeventos_id }}
+                            <strong>Tipo de evento:</strong>
+                            {{  $EvenArray['tipoeventos_id'] }}
                         </div>
 
                     </div>

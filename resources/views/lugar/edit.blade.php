@@ -16,11 +16,11 @@
                         <span class="card-title">Update Lugar</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('lugars.update',$lugars->id) }}"  role="form" enctype="multipart/form-data">
-                            {{ method_field('PATCH') }}
+                        <form method="POST" action="{{ route('lugars.update',$lugarsArray['id']) }}"  role="form" enctype="multipart/form-data">
+                          @method('PUT')
                             @csrf
 
-                            @include('lugar.form')
+                            @include('lugar.form2')
 
                         </form>
                     </div>

@@ -54,11 +54,6 @@ class LugarController extends Controller
         $ServiArray = $servicio->json();
 
         return view('lugar.index', compact('lugarArray', 'tipolugares', 'RutaArray','GastronomiaArray','EventoArray','CalifiArray','CalifiArray','ServiArray'));
-
-
-        // $TipolugarArray = Tipolugar::pluck('nombre');
-        // return $Tipolugar;
-
     }
 
     /**
@@ -69,8 +64,40 @@ class LugarController extends Controller
 
     public function create()
     {
-       
-        return view('lugar.create');
+
+        $Tipolugar = Http::get('http://popayanturimsapi.test/v1/tipolugar');
+        $tipolugares = $Tipolugar->json();
+        $colletion=collect($tipolugares);
+        $pluckedTl = $colletion->pluck('nombre');
+
+        $ruta = Http::get('http://popayanturimsapi.test/v1/ruta');
+        $RutaArray = $ruta->json();
+        $colletion=collect($RutaArray);
+        $pluckedrt = $colletion->pluck('ubicacion');
+
+        $Gastronomia = Http::get('http://popayanturimsapi.test/v1/gastronomia');
+        $GastroArray = $Gastronomia->json();
+        $colletion=collect($GastroArray);
+        $pluckedGs = $colletion->pluck('ubicacion');
+
+        $Evento = Http::get('http://popayanturimsapi.test/v1/Evento');
+        $EventoArray = $Evento->json();
+        $colletion=collect($EventoArray);
+        $pluckedEv = $colletion->pluck('ubicacion');
+
+        $calificasiones = Http::get('http://popayanturimsapi.test/v1/calificasiones');
+        $CalifiArray = $calificasiones->json();
+        $colletion=collect($CalifiArray);
+        $pluckedCal = $colletion->pluck('comentarios');
+
+        $servicio = Http::get('http://popayanturimsapi.test/v1/servicio');
+        $ServiArray = $servicio->json();
+        $colletion=collect($ServiArray);
+        $pluckedSer = $colletion->pluck('nombre');
+
+
+
+        return view('lugar.create',compact('pluckedTl','pluckedrt','pluckedGs','pluckedEv','pluckedCal','pluckedSer'));
     }
 
     /**
@@ -85,21 +112,6 @@ class LugarController extends Controller
 
          $lugar = Http::post('http://popayanturimsapi.test/v1/lugar',$request->all());
          return $lugar;
-// request()->validate(Lugar::$rules);
-// $lugar = $request->all();
-
-
-// $file=$request->file("foto_url");
-// $nombreArchivo = "img_".time().".".$file->guessExtension();
-// $request->file('foto_url')->storeAs('public/Fotos', $nombreArchivo );
-// $lugar['foto_url']= "$nombreArchivo";
-// Lugar::create($lugar);
-
-//    return redirect()->route('lugars.index')
-//         ->with('success', 'Lugar created successfully.');
-
-
-
 
 
     }
@@ -112,9 +124,8 @@ class LugarController extends Controller
      */
     public function show($id)
     {
-        $lugars = Http::get('http://popayanturimsapi.test/v1/lugar');
+        $lugars = Http::get('http://popayanturimsapi.test/v1/lugar/'.$id);
         $lugarArray = $lugars->json();
-
         return view('lugar.show', compact('lugarArray'));
     }
 
@@ -126,16 +137,42 @@ class LugarController extends Controller
      */
     public function edit($id)
     {
+     $lugars= http::get('http://popayanturimsapi.test/v1/lugar/'.$id);
+     $lugarsArray=$lugars->json();
+
+     $Tipolugar = Http::get('http://popayanturimsapi.test/v1/tipolugar');
+     $tipolugares = $Tipolugar->json();
+     $colletion=collect($tipolugares);
+     $pluckedTl = $colletion->pluck('nombre');
+
+     $ruta = Http::get('http://popayanturimsapi.test/v1/ruta');
+     $RutaArray = $ruta->json();
+     $colletion=collect($RutaArray);
+     $pluckedrt = $colletion->pluck('ubicacion');
+
+     $Gastronomia = Http::get('http://popayanturimsapi.test/v1/gastronomia');
+     $GastroArray = $Gastronomia->json();
+     $colletion=collect($GastroArray);
+     $pluckedGs = $colletion->pluck('ubicacion');
+
+     $Evento = Http::get('http://popayanturimsapi.test/v1/Evento');
+     $EventoArray = $Evento->json();
+     $colletion=collect($EventoArray);
+     $pluckedEv = $colletion->pluck('ubicacion');
+
+     $calificasiones = Http::get('http://popayanturimsapi.test/v1/calificasiones');
+     $CalifiArray = $calificasiones->json();
+     $colletion=collect($CalifiArray);
+     $pluckedCal = $colletion->pluck('comentarios');
+
+     $servicio = Http::get('http://popayanturimsapi.test/v1/servicio');
+     $ServiArray = $servicio->json();
+     $colletion=collect($ServiArray);
+     $pluckedSer = $colletion->pluck('nombre');
+
+     return view('lugar.edit',compact('lugarsArray','pluckedTl','pluckedrt','pluckedGs','pluckedEv','pluckedCal','pluckedSer'));
 
 
-        $lugar = Lugar::find($id);
-        $tipolugar = Tipolugar::pluck('nombre','id');#consulta para retornar
-        $ruta = Ruta::pluck('ubicasion');
-        $gastronomia = Gastronomia::pluck('ubicasion');
-        $evento = Evento::pluck('nombre');
-        $calificasiones = Calificasione::pluck('comentarios');
-        $servicio = Servicio ::pluck('nombre');
-  return view('lugar.edit', compact('lugar','tipolugar','ruta','gastronomia','evento','calificasiones','servicio'));
     }
 
     /**
@@ -145,20 +182,11 @@ class LugarController extends Controller
      * @param  Lugar $lugar
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Lugar $lugar)
+    public function update(Request $request, $id)
     {
-        http::put('http://popayanturimsapi.test/v1/lugar'.$lugar,$request->all());
-        // request()->validate(Lugar::$rules);
-        $lugar->update($request->all());
-
-        $file=$request->file("foto_url");
-$nombreArchivo = "img_".time().".".$file->guessExtension();
-$request->file('foto_url')->storeAs('public/Fotos', $nombreArchivo );
-$lugar['foto_url']= "$nombreArchivo";
-$lugar->save();
-
-        return redirect()->route('lugars.index')
-        ->with('success', 'Lugar update successfully');
+        http::put('http://popayanturimsapi.test/v1/lugar'.$id,$request->all());
+        //  return $request;
+         return redirect()->route('lugars.index');
 
 
 

@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('template_title')
-    {{ $calificasione->name ?? 'Show Calificasiones' }}
+    {{ 'Show Calificasiones' }}
 @endsection
 
 @section('content')
@@ -22,11 +22,11 @@
                         
                         <div class="form-group">
                             <strong>Comentarios:</strong>
-                            {{ $calificasione->comentarios }}
+                            {{ $CalifiArray['comentarios'] }}
                         </div>
                         <div class="form-group">
                             <strong>Reseñas:</strong>
-                            {{ $calificasione->reseñas }}
+                            {{ $CalifiArray['reseñas'] }}
                         </div>
 
                     </div>

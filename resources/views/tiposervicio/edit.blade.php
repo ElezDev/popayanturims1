@@ -12,7 +12,7 @@
                 @includeif('partials.errors')
 
                 <div class="card card-default">
-                    <div class="card-header">
+                 <div class="card-header bg bg-success" >
                         <span class="card-title">Update Tiposervicio</span>
                     </div>
                     <div class="card-body">
@@ -20,7 +20,7 @@
                             {{ method_field('PUT') }}
                             @csrf
 
-                            @include('tiposervicio.form')
+                            @include('tiposervicio.formedi')
 
                         </form>
                     </div>

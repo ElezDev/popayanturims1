@@ -30,6 +30,7 @@
             <th>Inicio</th>
             <th>Fin</th>
             <th>Tipoeventos</th>
+            <th>foto</th>
 
             <th></th>
         </tr>
@@ -39,18 +40,15 @@
 
         @foreach ($eventoArray as $evento )
         <tr>
-            <td></td>
-
-
+            <td>{{ $evento['id'] }}</td>
             <td>{{ $evento['nombre'] }}</td>
             <td>{{ $evento['ubicacion'] }}</td>
             <td>{{ $evento['horarios']}}</td>
             <td>{{ $evento['fechainicio']}}</td>
             <td>{{ $evento['fechafin'] }}</td>
             <td>{{ $evento['tipoeventos_id'] }}</td>
-
-
-            <td width="280px">
+            <td> <img  src="{{  'http://localhost/Popayanturimsapi/storage/app/public/Fotos_Evento/'.$evento['foto_url'] }} " width="15%" style="border-radius:28px"/></td>
+            <td width="290px">
                 <form action="{{ route('eventos.destroy',$evento['id'] ) }}" method="POST" class="eliminar">
                     <a class="btn btn-sm btn-primary " href="{{ route('eventos.show',$evento['id'] ) }}"><i class="fa fa-fw fa-eye" class="sho"></i> Show</a>
                     <a class="btn btn-sm btn-success" href="{{ route('eventos.edit',$evento['id'] ) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>

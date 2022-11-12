@@ -19,8 +19,8 @@ class ServicioController extends Controller
      */
     public function index()
     {
-        $servicio = Http::get('http://popayanturimsapi.test/v1/servicio');
-        $ServicioArray= $servicio ->json();
+        $ser= Http::get('http://popayanturimsapi.test/v1/servicio');
+        $ServicioArray= $ser->json();
         return view('servicio.index', compact('ServicioArray'));
     }
 
@@ -31,8 +31,12 @@ class ServicioController extends Controller
      */
     public function create()
     {
+        $tiposervicio = Http::get('http://popayanturimsapi.test/v1/tiposervicio');
+        $TipoSerArray = $tiposervicio->json();
+        $colletion=collect($TipoSerArray);
+        $plucked = $colletion->pluck('nombre');
 
-        return view('servicio.create');
+        return view('servicio.create',compact('plucked'));
     }
 
     /**
@@ -56,9 +60,9 @@ class ServicioController extends Controller
      */
     public function show($id)
     {
-        $servicio = Servicio::find($id);
-
-        return view('servicio.show', compact('servicio'));
+        $servicio = Http::get('http://popayanturimsapi.test/v1/servicio/'.$id);
+        $ServiArray = $servicio->json();
+        return view('servicio.show', compact('ServiArray'));
     }
 
     /**
@@ -69,9 +73,13 @@ class ServicioController extends Controller
      */
     public function edit($id)
     {
-        $servicio = Servicio::find($id);
-
-        return view('servicio.edit', compact('servicio'));
+        $servicio= http::get('http://popayanturimsapi.test/v1/servicio/'.$id);
+        $ServiArray=$servicio->json();
+        $tiposervicio = Http::get('http://popayanturimsapi.test/v1/tiposervicio');
+        $TipoSerArray = $tiposervicio->json();
+        $colletion=collect($TipoSerArray);
+        $plucked = $colletion->pluck('nombre');
+        return view('servicio.edit', compact('ServiArray','plucked'));
     }
 
     /**
@@ -81,14 +89,12 @@ class ServicioController extends Controller
      * @param  Servicio $servicio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Servicio $servicio)
+    public function update(Request $request,$id)
     {
-        request()->validate(Servicio::$rules);
 
-        $servicio->update($request->all());
+        Http::put('http://popayanturimsapi.test/v1/servicio/'.$id,$request->all());
+        return redirect()->route('servicios.index');
 
-        return redirect()->route('servicios.index')
-            ->with('success', 'Servicio updated successfully');
     }
 
     /**

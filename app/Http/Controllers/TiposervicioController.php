@@ -31,6 +31,7 @@ class TiposervicioController extends Controller
     public function create()
     {
 
+
         return view('tiposervicio.create');
     }
 
@@ -54,7 +55,7 @@ class TiposervicioController extends Controller
      */
     public function show($id)
     {
-        $tiposervicio = Http::get('http://popayanturimsapi.test/v1/tiposervicio'.$id);
+        $tiposervicio = Http::get('http://popayanturimsapi.test/v1/tiposervicio/'.$id);
         $TipoSerArray = $tiposervicio->json();
         return view('tiposervicio.show',compact('TipoSerArray'));
     }
@@ -81,8 +82,8 @@ class TiposervicioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Http::put('http://popayanturimsapi.test/v1/tiposervicio'.$id,$request->all());
-        return $request;
+        Http::put('http://popayanturimsapi.test/v1/tiposervicio/'.$id,$request->all());
+        return redirect()->route('tiposervicios.index');
     }
 
     /**

@@ -1,5 +1,3 @@
-
-
 @extends('adminlte::page')
 
 @section('title', 'Post')
@@ -22,6 +20,7 @@
             <th>No</th>
             <th>contenido</th>
             <th>user_id</th>
+            <th>foto</th>
             <th></th>
 
         </tr>
@@ -31,9 +30,9 @@
     @foreach ($PostArray as $post)
     <tr>
         <td>{{ $post['id'] }}</td>
-
         <td>{{ $post['Contenido'] }}</td>
         <td>{{ $post['users_id'] }}</td>
+           <td> <img  src="{{'http://localhost/Popayanturimsapi/storage/app/public/Fotos_post/'.$post['img_post'] }} " width="15%" style="border-radius:28px"/></td>
 
         <td width="280px">
             <form action="{{ route('posts.destroy', $post['id']) }}" method="POST">

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
 @section('template_title')
     {{ $post->name ?? 'Show Post' }}
@@ -21,16 +21,12 @@
                     <div class="card-body">
                         
                         <div class="form-group">
-                            <strong>Imagen Url:</strong>
-                            {{ $post->imagen_url }}
-                        </div>
-                        <div class="form-group">
                             <strong>Contenido:</strong>
-                            {{ $post->Contenido }}
+                            {{   $PostArray['Contenido'] }}
                         </div>
                         <div class="form-group">
                             <strong>Users Id:</strong>
-                            {{ $post->users_id }}
+                            {{ $PostArray['users_id'] }}
                         </div>
 
                     </div>

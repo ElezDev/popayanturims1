@@ -57,9 +57,10 @@ class CalificasioneController extends Controller
      */
     public function show($id)
     {
-        $calificasione = Calificasione::find($id);
 
-        return view('calificasione.show', compact('calificasione'));
+        $califi = Http::get('http://popayanturimsapi.test/v1/calificasiones/'.$id);
+        $CalifiArray = $califi->json();
+        return view('calificasione.show', compact('CalifiArray'));
     }
 
     /**
@@ -70,8 +71,10 @@ class CalificasioneController extends Controller
      */
     public function edit($id)
     {
-        $calificasione = Http::get('http://popayanturimsapi.test/v1/calificasiones');
-            return view('calificasione.edit', compact('calificasione'));
+        $calificasione = Http::get('http://popayanturimsapi.test/v1/calificasiones/'.$id);
+        $CalifiArray=$calificasione->json();  
+        
+        return view('calificasione.edit', compact('CalifiArray'));
     }
 
     /**
@@ -81,9 +84,9 @@ class CalificasioneController extends Controller
      * @param  Calificasione $calificasione
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Calificasione $calificasione)
+    public function update(Request $request, $id)
     {
-        Http::put('http://popayanturimsapi.test/v1/calificasiones'.$calificasione,$request->all());
+        Http::put('http://popayanturimsapi.test/v1/calificasiones/'.$id,$request->all());
         return redirect()->route('calificasiones.index');
     }
 

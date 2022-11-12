@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('template_title')
-    {{ $tipolugar->name ?? 'Show Tipolugar' }}
+    {{'Show Tipolugar' }}
 @endsection
 
 @section('content')
@@ -22,11 +22,11 @@
 
                         <div class="form-group">
                             <strong>Nombre:</strong>
-                            {{ $tipolugar->nombre }}
+                            {{ $TlugarArray['nombre']}}
                         </div>
                         <div class="form-group">
                             <strong>Descripcion:</strong>
-                            {{ $tipolugar->descripcion }}
+                            {{ $TlugarArray['descripcion']}}
                         </div>
 
                     </div>

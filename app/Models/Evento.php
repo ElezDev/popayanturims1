@@ -31,6 +31,7 @@ class Evento extends Model
 		'horarios' => 'required',
 		'fechainicio' => 'required',
 		'fechafin' => 'required',
+        'Foto_url'=>'required',
 		'tipoeventos_id' => 'required',
     ];
 
@@ -41,7 +42,7 @@ class Evento extends Model
      *
      * @var array
      */
-    protected $fillable = ['nombre','ubucasion','horarios','fechainicio','fechafin','tipoeventos_id'];
+    protected $fillable = ['nombre','ubucasion','horarios','fechainicio','fechafin','Foto_url','tipoeventos_id'];
 
 
     /**

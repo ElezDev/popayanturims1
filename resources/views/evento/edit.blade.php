@@ -12,15 +12,15 @@
                 @includeif('partials.errors')
 
                 <div class="card card-default">
-                    <div class="card-header">
+                 <div class="card-header bg bg-success" >
                         <span class="card-title">Update Evento</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('eventos.update', $evento->id) }}"  role="form" enctype="multipart/form-data">
-                            {{ method_field('PATCH') }}
+                        <form method="POST" action="{{ route('eventos.update', $EventArray['id']) }}"  role="form" enctype="multipart/form-data">
+                            {{ method_field('PUT') }}
                             @csrf
 
-                            @include('evento.form')
+                            @include('evento.formedit')
 
                         </form>
                     </div>

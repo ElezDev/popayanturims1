@@ -19,6 +19,7 @@ class CreateEventosTable extends Migration
             $table->string('ubucasion');
             $table->string('horarios');
             $table->string('fechainicio');
+            $table->string('Foto_url');
             $table->string('fechafin');
             $table->timestamps();
 

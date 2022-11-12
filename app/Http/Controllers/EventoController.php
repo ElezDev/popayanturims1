@@ -31,8 +31,11 @@ class EventoController extends Controller
      */
     public function create()
     {
-        $evento = new Evento();
-        return view('evento.create', compact('evento'));
+        $evento = Http::get('http://popayanturimsapi.test/v1/Evento');
+        $eventoArray = $evento->json();
+        $colletion=collect($eventoArray);
+        $plucked = $colletion->pluck('nombre');
+        return view('evento.create',compact('plucked'));
     }
 
     /**
@@ -43,12 +46,9 @@ class EventoController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Evento::$rules);
+        $evento = Http::post('http://popayanturimsapi.test/v1/Evento',$request->all());
+        return $evento;
 
-        $evento = Evento::create($request->all());
-
-        return redirect()->route('eventos.index')
-            ->with('success', 'Evento created successfully.');
     }
 
     /**
@@ -59,9 +59,9 @@ class EventoController extends Controller
      */
     public function show($id)
     {
-        $evento = Evento::find($id);
-
-        return view('evento.show', compact('evento'));
+        $evento= Http::get('http://popayanturimsapi.test/v1/Evento/'.$id);
+        $EvenArray = $evento->json();
+        return view('evento.show', compact('EvenArray'));
     }
 
     /**
@@ -72,9 +72,9 @@ class EventoController extends Controller
      */
     public function edit($id)
     {
-        $evento = Evento::find($id);
-
-        return view('evento.edit', compact('evento'));
+        $evento= http::get('http://popayanturimsapi.test/v1/Evento/'.$id);
+        $EventArray=$evento->json();
+        return view('evento.edit', compact('EventArray'));
     }
 
     /**
@@ -84,14 +84,11 @@ class EventoController extends Controller
      * @param  Evento $evento
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Evento $evento)
+    public function update(Request $request,$id)
     {
-        request()->validate(Evento::$rules);
-
-        $evento->update($request->all());
-
-        return redirect()->route('eventos.index')
-            ->with('success', 'Evento updated successfully');
+        
+        Http::post('http://popayanturimsapi.test/v1/Evento/'.$id,$request->all());
+        return redirect()->route('eventos.index');
     }
 
     /**
@@ -101,9 +98,8 @@ class EventoController extends Controller
      */
     public function destroy($id)
     {
-        $evento = Evento::find($id)->delete();
+        Http::delete('http://popayanturimsapi.test/v1/Evento/' . $id);
 
-        return redirect()->route('eventos.index')
-            ->with('success', 'Evento deleted successfully');
+        return redirect()->route('eventos.index')->with('success', 'Evento deleted successfully');
     }
 }

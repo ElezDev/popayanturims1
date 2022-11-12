@@ -29,7 +29,6 @@
         <div> 
             <label>
                 {!! Form::checkbox('roles[]', $role->id, null, ['class'=> 'mr-1']) !!}
-
                {{$role->name}} 
             </label>
         </div>

@@ -12,11 +12,11 @@
                 @includeif('partials.errors')
 
                 <div class="card card-default">
-                    <div class="card-header">
+                  <div class="card-header bg bg-success" >
                         <span class="card-title">Create Evento</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('eventos.store') }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{('http://popayanturimsapi.test/v1/Evento')}}"  role="form" enctype="multipart/form-data">
                             @csrf
 
                             @include('evento.form')

@@ -1,7 +1,7 @@
 @extends('adminlte::page')
 
 @section('template_title')
-    {{ $servicio->name ?? 'Show Servicio' }}
+    {{  'Show Servicio' }}
 @endsection
 
 @section('content')
@@ -22,23 +22,23 @@
 
                         <div class="form-group">
                             <strong>Nombre:</strong>
-                            {{ $servicio->nombre }}
+                            {{ $ServiArray['nombre']}}
                         </div>
                         <div class="form-group">
                             <strong>Descripcion:</strong>
-                            {{ $servicio->descripcion }}
+                            {{  $ServiArray['descripcion'] }}
                         </div>
                         <div class="form-group">
                             <strong>Ubicasion:</strong>
-                            {{ $servicio->ubicasion }}
+                            {{  $ServiArray['ubicacion'] }}
                         </div>
                         <div class="form-group">
                             <strong>Horarios:</strong>
-                            {{ $servicio->horarios }}
+                            {{  $ServiArray['horarios'] }}
                         </div>
                         <div class="form-group">
-                            <strong>Tiposervicios Id:</strong>
-                            {{ $servicio->tiposervicios_id }}
+                            <strong>Tipo de servicio:</strong>
+                            {{  $ServiArray['tiposervicio_id']}}
                         </div>
 
                     </div>

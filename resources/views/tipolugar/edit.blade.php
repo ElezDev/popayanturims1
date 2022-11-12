@@ -16,11 +16,11 @@
                         <span class="card-title">Update Tipolugar</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('tipolugars.update', $tipolugar->id) }}"  role="form" enctype="multipart/form-data">
-                            {{ method_field('PATCH') }}
+                        <form method="POST" action="{{ route('tipolugars.update',$TlugarsArray['id']) }}"  role="form" enctype="multipart/form-data">
+                            {{ method_field('PUT') }}
                             @csrf
-
-                            @include('tipolugar.form')
+ @include('tipolugar.formedit')
+                         
 
                         </form>
                     </div>

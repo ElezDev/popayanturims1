@@ -35,15 +35,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        // $image = Image::all();
-        // $post = new Post();
-        // $User = User::all();
-//      foreach($User as $user)
-//     if(Auth()->user()->id==$user->id){
-//      $post->users_id = $user->id;
-//    };
 
-        return view('post.create');
+        return view('post.form');
     }
 
     /**
@@ -53,22 +46,14 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        Http::post('http://popayanturimsapi.test/v1/post',$request->all());
-//         $post = new Post();
-//      $usuario = auth()->user()->id;
+    {   $post = Http::post('http://popayanturimsapi.test/v1/post',$request->all());
+        return $post;
 
-// // $post= $request ->all();
-
-//  $file=$request->file("imagen_url");
-// $nombre = "img_".time().".".$file->guessExtension();
-// $request->file('imagen_url')->storeAs('public/imagenes', $nombre );
-// $post['imagen_url']= "$nombre" ;
-// $temp=$post->create(['Contenido'=>$request->Contenido,'users_id'=>$usuario])->images()->create(['url'=>$nombre]);
-
+       
 
          return $request;
-            }
+        
+        }
 
     /**
      * Display the specified resource.
@@ -78,9 +63,10 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Post::find($id);
-
-        return view('post.show', compact('post'));
+        $post = Http::get('http://popayanturimsapi.test/v1/post/'.$id);
+        $PostArray = $post->json();
+    
+        return view('post.show', compact('PostArray'));
     }
 
     /**
@@ -106,14 +92,11 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
 
-          $image = Image::all();
-        $post->update($request->all());
-
-        $file=$request->file("imagen_url");
-$nombreArchivo = "img_".time().".".$file->guessExtension();
-$request->file('imagen_url')->storeAs('public/imagenes', $nombre );
-$post['imagen_url']= "$nombre";
-$post->save();
+//  $file=$request->file("imagen_url");
+// $nombreArchivo = "img_".time().".".$file->guessExtension();
+// $request->file('imagen_url')->storeAs('public/imagenes', $nombre );
+// $post['imagen_url']= "$nombre";
+// $post->save();
 
 
         return redirect()->route('posts.index',compact('image'))
@@ -132,14 +115,4 @@ $post->save();
         return redirect()->route('posts.index')
             ->with('success', 'Post deleted successfully');
     }
-    public function publicacion()
-    {
-
-        $post = Http::get('http://popayanturimsapi.test/v1/post');
-        $PostArray = $post->json();
-        return view('post.publicacion',compact('PostArray'));
-
-    }
-
-    }
-
+}
