@@ -25,7 +25,7 @@ $this->call(TipoEventoSeeder::class);
 $this->call(eventoSeeder::class);
 $this->call(TipoServicioSeeder::class);
 $this->call(ServicioSeeder::class);
-$this->call(calificasionesSeder::class);
+$this->call(calificacionesSeder::class);
 $this->call(Roleseeder::class);
 $this->call(UserSeeder::class);
 

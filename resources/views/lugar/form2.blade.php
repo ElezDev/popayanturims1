@@ -25,7 +25,8 @@
         <div class="grid grid-cols-1 mt-5 mx-7">
             <img id="imagenSeleccionada"  height="80">
             {{ Form::label('foto_url' )  }}
-            <input type="file" name="foto_url" " class="form-control">
+            <input type="file" value"{{$lugarsArray['foto_url']}}"  name="foto_url" "class="form-control">
+           <img  src="{{  'http://localhost/Popayanturimsapi/storage/app/public/Fotos/'.$lugarsArray['foto_url'] }} " width="15%" style="border-radius:28px"/>
         </div>
         <div class="form-group">
             {{ Form::label('tipo de lugar') }}

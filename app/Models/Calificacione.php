@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Calificasione
+ * Class Calificacione
  *
  * @property $id
  * @property $comentarios
@@ -17,7 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class Calificasione extends Model
+class Calificacione extends Model
 {
     
     static $rules = [

@@ -23,7 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $created_at
  * @property $updated_at
  *
- * @property Calificasione $calificasione
+ * @property Calificacione $calificasione
  * @property Convenio[] $convenios
  * @property Evento $evento
  * @property Gastronomia $gastronomia
@@ -36,8 +36,6 @@ use Illuminate\Database\Eloquent\Model;
 class Lugar extends Model
 {
 
-
-
     static $rules = [
 		'nombre' => 'required',
 		'direccion' => 'required',
@@ -48,7 +46,7 @@ class Lugar extends Model
 		'ruta_id' => 'required',
 		'gastronomia_id' => 'required',
 		'evento_id' => 'required',
-		'calificasione_id' => 'required',
+		'calificacione_id' => 'required',
 		'servicio_id' => 'required',
     ];
 
@@ -64,9 +62,9 @@ class Lugar extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function calificasione()
+    public function calificacione()
     {
-        return $this->hasMany('App\Models\Calificasione', 'id', 'calificasiones_id');
+        return $this->hasMany('App\Models\Calificacione', 'id', 'calificaciones_id');
     }
 
     /**

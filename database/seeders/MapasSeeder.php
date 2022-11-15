@@ -14,9 +14,9 @@ class MapasSeeder extends Seeder
     public function run()
     {
         $mapa = new Mapa();
-        $mapa->gps = "prueba";
-        $mapa->ubicacion= "prueba";
-        $mapa->multimedia= "prueba";
+        $mapa->nombre = "prueba";
+        $mapa->longitud= "prueba";
+        $mapa->latitud= "prueba";
         $mapa->save();
     }
 

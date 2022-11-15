@@ -22,9 +22,9 @@ class Mapa extends Model
 {
     
     static $rules = [
-		'gps' => 'required',
-		'ubicacion' => 'required',
-		'multimedia' => 'required',
+		'nombre' => 'required',
+		'longitud' => 'required',
+		'latitud' => 'required',
     ];
 
     protected $perPage = 20;
@@ -34,7 +34,7 @@ class Mapa extends Model
      *
      * @var array
      */
-    protected $fillable = ['gps','ubicacion','multimedia'];
+    protected $fillable = ['nombre','longitud','latitud'];
 
 
     /**

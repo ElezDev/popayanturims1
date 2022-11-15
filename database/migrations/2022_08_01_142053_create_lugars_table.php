@@ -34,8 +34,8 @@ class CreateLugarsTable extends Migration
             $table->unsignedBigInteger('evento_id')->unsigned();
             $table->foreign('evento_id')->references('id')->on('eventos');
 
-            $table->unsignedBigInteger('calificasiones_id')->unsigned();
-            $table->foreign('calificasiones_id')->references('id')->on('calificasiones');
+            $table->unsignedBigInteger('calificaciones_id')->unsigned();
+            $table->foreign('calificaciones_id')->references('id')->on('calificaciones');
 
             $table->unsignedBigInteger('servicios_id')->unsigned();
             $table->foreign('servicios_id')->references('id')->on('servicios');

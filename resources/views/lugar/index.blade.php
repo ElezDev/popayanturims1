@@ -25,7 +25,6 @@
 
 
 <table id="tuser" class="table table-striped">
-
     <thead class="bg bg-success">
         <tr>
             <th></th>
@@ -36,21 +35,13 @@
             <th>Descripcion</th>
             <th>Tipolugar</th>
             <th>Foto</th>
-
             <td></td>
-
-
         </tr>
     </thead>
-
-<tbody>
-
+  <tbody>
     @foreach ($lugarArray as $lugars )
-
-
-<tr>
-        <td></td>
-
+        <tr>
+        <td></td
         <td>{{ $lugars['id'] }}</td>
         <td>{{ $lugars['nombre'] }}</td>
         <td>{{ $lugars['direccion'] }}</td>
